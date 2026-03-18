@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
+
+		<title>Baseline 2025 – Web Platform Recap</title>
+
+		<link rel="stylesheet" href="dist/reset.css" />
+		<link rel="stylesheet" href="dist/reveal.css" />
+		<link rel="stylesheet" href="dist/theme/bouvet-nord.css" />
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="dist/plugin/highlight/monokai.css" />
+
+		<style>
+			.reveal .bouvet-logo {
+				position: fixed;
+				bottom: 20px;
+				left: 20px;
+				height: 30px;
+				z-index: 100;
+				opacity: 0.6;
+			}
+			.reveal .section-header {
+				display: flex;
+				align-items: center;
+				gap: 20px;
+			}
+			.reveal .section-header h2 {
+				margin: 0;
+			}
+			.reveal .section-icon {
+				height: 60px;
+				flex-shrink: 0;
+				opacity: 0.85;
+			}
+			.reveal .title-icon {
+				height: 120px;
+				margin-bottom: 20px;
+				opacity: 0.9;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<img src="icons/Bouvet_Logo_Nedry_Off-white.svg" alt="Bouvet" class="bouvet-logo" />
+			<div class="slides">
+				<!-- Title slide -->
+				<section>
+					<img src="icons/Gemometrisk.svg" alt="" class="title-icon" />
+					<h1>Baseline 2025</h1>
+					<p>Web Platform features you can now use everywhere</p>
+					<p><small>Source: <a href="https://web.dev/baseline/2025">web.dev/baseline/2025</a></small></p>
+				</section>
+
+				<!-- What is Baseline? -->
+				<section>
+					<h2>What is Baseline?</h2>
+					<p>Baseline gives you clear information about which web platform features are safe to use in your projects today.</p>
+					<p>A feature is <strong>Baseline</strong> when it works across all major browsers.</p>
+				</section>
+
+				<!-- ========================== -->
+				<!-- HTML & CSS                -->
+				<!-- ========================== -->
+
+				<!-- CSS: Styling & Layout -->
+				<section>
+					<section>
+						<h2>CSS: Styling &amp; Layout</h2>
+						<ul>
+							<li><code>@scope</code></li>
+							<li><code>content-visibility</code></li>
+							<li><code>scrollbar-color</code></li>
+							<li><code>print-color-adjust</code></li>
+							<li><code>font-family: math</code></li>
+						</ul>
+					</section>
+
+					<section>
+						<h3><code>@scope</code></h3>
+						<p>Scoped styling lets you limit CSS rules to a specific DOM subtree, avoiding class-name collisions and deep selectors.</p>
+						<pre><code class="language-css">@scope (.card) to (.card-content) {
+  p { color: gray; }
+}</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/Reference/At-rules/@scope">MDN: @scope</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>scrollbar-color</code></h3>
+						<p>Customize the thumb and track colors of scrollbars without non-standard pseudo-elements.</p>
+						<pre><code class="language-css">.container {
+  scrollbar-color: #6969dd #e0e0e0;
+}</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/scrollbar-color">MDN: scrollbar-color</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>content-visibility</code></h3>
+						<p>Skips rendering of off-screen content, dramatically improving page load and scroll performance for long pages.</p>
+						<pre><code class="language-css">section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}</code></pre>
+						<p><small><a href="https://web.dev/articles/content-visibility">web.dev: content-visibility</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>font-family: math</code></h3>
+						<p>A generic font family for mathematical expressions, ensuring consistent rendering of math content across browsers.</p>
+						<pre><code class="language-css">math {
+  font-family: math;
+}</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/font-family">MDN: font-family</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>print-color-adjust</code></h3>
+						<p>Controls whether the browser may adjust colors and images when printing or saving to PDF.</p>
+						<pre><code class="language-css">.chart {
+  print-color-adjust: exact;
+}</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/print-color-adjust">MDN: print-color-adjust</a></small></p>
+					</section>
+				</section>
+
+				<!-- CSS: Functions & Values -->
+				<section>
+					<section>
+						<h2>CSS: Functions &amp; Values</h2>
+						<ul>
+							<li><code>sign()</code></li>
+							<li><code>abs()</code></li>
+							<li>Single stop color gradients</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3><code>sign()</code></h3>
+						<p>Returns -1, 0, or 1 depending on the sign of the argument. Useful for direction-aware calculations in CSS.</p>
+						<pre><code class="language-css">.item {
+  transform: translateX(
+    calc(sign(var(--x)) * 100px)
+  );
+}</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/sign">MDN: sign()</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>abs()</code></h3>
+						<p>Returns the absolute value of a CSS math expression. Complements <code>sign()</code> for pure-CSS calculations.</p>
+						<pre><code class="language-css">.bar {
+  width: abs(var(--value) * 1px);
+}</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/abs">MDN: abs()</a></small></p>
+					</section>
+
+					<section>
+						<h3>Single stop color gradients</h3>
+						<p>Gradients with a single color stop are now valid, simplifying solid-color overlays and gradient fallbacks.</p>
+						<pre><code class="language-css">.overlay {
+  background: linear-gradient(tomato);
+}</code></pre>
+						<p><small><a href="https://web-platform-dx.github.io/web-features-explorer/features/single-color-gradients/">Web Features Explorer</a></small></p>
+					</section>
+				</section>
+
+				<!-- View Transitions -->
+				<section>
+					<section>
+						<h2>View Transitions</h2>
+						<ul>
+							<li>View Transition API</li>
+							<li><code>view-transition-class</code></li>
+							<li>Same-document view transitions</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>View Transition API</h3>
+						<p>Enables smooth animated transitions between DOM states without JavaScript animation libraries.</p>
+						<pre><code class="language-css">::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+}</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/API/View_Transition_API">MDN: View Transition API</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>view-transition-class</code></h3>
+						<p>Assigns a class to a view transition pseudo-element, letting you style groups of transitioning elements together.</p>
+						<pre><code class="language-css">.card {
+  view-transition-class: card;
+}
+::view-transition-group(.card) {
+  animation-duration: 0.5s;
+}</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/view-transition-class">MDN: view-transition-class</a></small></p>
+					</section>
+
+					<section>
+						<h3>Same-document view transitions</h3>
+						<p>Animate between states within a single page using <code>document.startViewTransition()</code>.</p>
+						<pre><code class="language-js">document.startViewTransition(() => {
+  updateDOM(); // swap content
+});</code></pre>
+						<p><small><a href="https://web.dev/blog/same-document-view-transitions-are-now-baseline-newly-available">web.dev: Same-document view transitions</a></small></p>
+					</section>
+				</section>
+
+				<!-- HTML Features -->
+				<section>
+					<section>
+						<h2>HTML Features</h2>
+						<ul>
+							<li>Popover API</li>
+							<li><code>contenteditable="plaintext-only"</code></li>
+							<li><code>&lt;link rel="dns-prefetch"&gt;</code></li>
+						</ul>
+					</section>
+
+					<section>
+						<h3><code>&lt;link rel="dns-prefetch"&gt;</code></h3>
+						<p>Tells the browser to resolve the DNS for a domain early, reducing latency when the user navigates to it.</p>
+						<pre><code class="language-html">&lt;link rel="dns-prefetch"
+      href="https://api.example.com"&gt;</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/Performance/Guides/dns-prefetch">MDN: dns-prefetch</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>contenteditable="plaintext-only"</code></h3>
+						<p>Makes an element editable but strips all formatting on paste, keeping content as plain text.</p>
+						<pre><code class="language-html">&lt;div contenteditable="plaintext-only"&gt;
+  Type here…
+&lt;/div&gt;</code></pre>
+						<p><small><a href="https://web.dev/blog/contenteditable-plaintext-only-baseline">web.dev: contenteditable plaintext-only</a></small></p>
+					</section>
+
+					<section>
+						<h3>Popover API</h3>
+						<p>A built-in way to create popovers, tooltips, and menus with automatic light-dismiss and top-layer rendering. No JavaScript needed for basic use.</p>
+						<pre><code class="language-html">&lt;button popovertarget="mypopover"&gt;
+  Open
+&lt;/button&gt;
+&lt;div id="mypopover" popover&gt;
+  Popover content!
+&lt;/div&gt;</code></pre>
+						<p><small><a href="https://web.dev/blog/popover-baseline">web.dev: Popover API</a></small></p>
+					</section>
+				</section>
+
+				<!-- ========================== -->
+				<!-- JavaScript & Web APIs      -->
+				<!-- ========================== -->
+
+				<!-- Performance & Metrics -->
+				<section>
+					<section>
+						<h2>Performance &amp; Metrics</h2>
+						<ul>
+							<li>Largest Contentful Paint (LCP)</li>
+							<li>Event Timing API</li>
+							<li><code>scrollend</code> event</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Largest Contentful Paint (LCP)</h3>
+						<p>A Core Web Vital that measures loading performance — the time it takes for the largest visible element to render.</p>
+						<pre><code class="language-js">new PerformanceObserver((list) => {
+  const entries = list.getEntries();
+  const last = entries[entries.length - 1];
+  console.log('LCP:', last.startTime);
+}).observe({ type: 'largest-contentful-paint',
+             buffered: true });</code></pre>
+						<p><small><a href="https://web.dev/blog/lcp-and-inp-are-now-baseline-newly-available">web.dev: LCP &amp; INP</a></small></p>
+					</section>
+
+					<section>
+						<h3>Event Timing API</h3>
+						<p>Measures the latency of user interactions (click, keypress, etc.). Powers the Interaction to Next Paint (INP) metric.</p>
+						<pre><code class="language-js">new PerformanceObserver((list) => {
+  for (const entry of list.getEntries()) {
+    console.log(entry.name, entry.duration);
+  }
+}).observe({ type: 'event', buffered: true });</code></pre>
+						<p><small><a href="https://web.dev/blog/lcp-and-inp-are-now-baseline-newly-available">web.dev: Event Timing</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>scrollend</code> event</h3>
+						<p>Fires when scrolling has completed — no more guessing with debounced scroll listeners.</p>
+						<pre><code class="language-js">document.addEventListener('scrollend', () => {
+  console.log('Scrolling finished!');
+});</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/API/Document/scrollend_event">MDN: scrollend event</a></small></p>
+					</section>
+				</section>
+
+				<!-- DOM & Interaction -->
+				<section>
+					<section>
+						<h2>DOM &amp; Interaction</h2>
+						<ul>
+							<li>Invoker Commands</li>
+							<li><code>document.caretPositionFromPoint()</code></li>
+							<li><code>dialog.requestClose()</code></li>
+							<li>Selection composed ranges</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Invoker Commands</h3>
+						<p>Declaratively wire buttons to actions on other elements — open dialogs, toggle popovers, play video — without JavaScript.</p>
+						<pre><code class="language-html">&lt;button commandfor="my-dialog"
+        command="show-modal"&gt;
+  Open Dialog
+&lt;/button&gt;
+&lt;dialog id="my-dialog"&gt;Hello!&lt;/dialog&gt;</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/API/Invoker_Commands_API">MDN: Invoker Commands API</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>document.caretPositionFromPoint()</code></h3>
+						<p>Returns the caret position (DOM node + offset) at given viewport coordinates. Useful for custom text editors and annotation tools.</p>
+						<pre><code class="language-js">document.addEventListener('click', (e) => {
+  const pos = document.caretPositionFromPoint(
+    e.clientX, e.clientY
+  );
+  console.log(pos.offsetNode, pos.offset);
+});</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/API/Document/caretPositionFromPoint">MDN: caretPositionFromPoint()</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>dialog.requestClose()</code></h3>
+						<p>Requests closing a dialog, firing a <code>cancel</code> event first so the dialog can prevent closing (e.g. unsaved changes).</p>
+						<pre><code class="language-js">const dialog = document.querySelector('dialog');
+// Fires 'cancel' event before closing
+dialog.requestClose();</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/requestClose">MDN: dialog.requestClose()</a></small></p>
+					</section>
+
+					<section>
+						<h3>Selection composed ranges</h3>
+						<p><code>getComposedRanges()</code> returns selection ranges that cross Shadow DOM boundaries — essential for web component editors.</p>
+						<pre><code class="language-js">const sel = window.getSelection();
+const ranges = sel.getComposedRanges(
+  shadowRoot
+);</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/API/Selection/getComposedRanges">MDN: getComposedRanges()</a></small></p>
+					</section>
+				</section>
+
+				<!-- Data & Parsing -->
+				<section>
+					<section>
+						<h2>Data &amp; Parsing</h2>
+						<ul>
+							<li>JSON import attributes</li>
+							<li>Unsanitized HTML parsing methods</li>
+							<li>URLPattern</li>
+							<li>Uint8Array base64 &amp; hex conversion</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Unsanitized HTML parsing methods</h3>
+						<p><code>Document.parseHTMLUnsafe()</code> and <code>Element.setHTMLUnsafe()</code> parse HTML strings including declarative Shadow DOM.</p>
+						<pre><code class="language-js">const doc = Document.parseHTMLUnsafe(
+  htmlString
+);
+element.setHTMLUnsafe(htmlString);</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/API/Document/parseHTMLUnsafe_static">MDN: parseHTMLUnsafe()</a></small></p>
+					</section>
+
+					<section>
+						<h3>URLPattern</h3>
+						<p>A built-in URL pattern matching API — like route matching in frameworks, but native.</p>
+						<pre><code class="language-js">const pattern = new URLPattern({
+  pathname: '/users/:id'
+});
+pattern.test('https://example.com/users/42');
+// true</code></pre>
+						<p><small><a href="https://web.dev/blog/baseline-urlpattern">web.dev: URLPattern</a></small></p>
+					</section>
+
+					<section>
+						<h3>JSON import attributes</h3>
+						<p>Import JSON files directly in JavaScript modules using the <code>with</code> syntax.</p>
+						<pre><code class="language-js">import data from './config.json'
+  with { type: 'json' };
+
+console.log(data.version);</code></pre>
+						<p><small><a href="https://web.dev/blog/json-imports-baseline-newly-available">web.dev: JSON imports</a></small></p>
+					</section>
+
+					<section>
+						<h3>Uint8Array base64 &amp; hex</h3>
+						<p>Convert between <code>Uint8Array</code> and base64/hex strings natively — no more <code>btoa</code> workarounds.</p>
+						<pre><code class="language-js">const bytes = Uint8Array.fromBase64('SGVsbG8=');
+const hex = bytes.toHex(); // "48656c6c6f"
+const b64 = bytes.toBase64(); // "SGVsbG8="</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromBase64">MDN: Uint8Array.fromBase64()</a></small></p>
+					</section>
+				</section>
+
+				<!-- JavaScript Language -->
+				<section>
+					<section>
+						<h2>JavaScript Language</h2>
+						<ul>
+							<li>Iterator helpers</li>
+							<li><code>Promise.try()</code></li>
+							<li><code>RegExp.escape()</code></li>
+							<li><code>Float16Array</code></li>
+							<li><code>Atomics.waitAsync()</code> &amp; <code>Atomics.pause()</code></li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Iterator helpers</h3>
+						<p>Built-in <code>.map()</code>, <code>.filter()</code>, <code>.take()</code>, <code>.drop()</code> and more on all iterators — lazy and composable.</p>
+						<pre><code class="language-js">const evens = Iterator.from([1,2,3,4,5])
+  .filter(n => n % 2 === 0)
+  .toArray(); // [2, 4]</code></pre>
+						<p><small><a href="https://web.dev/blog/baseline-iterator-helpers">web.dev: Iterator helpers</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>Promise.try()</code></h3>
+						<p>Wraps a sync or async function in a Promise so errors are always caught in the promise chain.</p>
+						<pre><code class="language-js">Promise.try(() => {
+  return maybeSync();
+}).then(result => {
+  console.log(result);
+});</code></pre>
+						<p><small><a href="https://web.dev/blog/promise-try-baseline">web.dev: Promise.try</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>RegExp.escape()</code></h3>
+						<p>Safely escapes a string for use inside a regular expression — no more hand-rolled escape functions.</p>
+						<pre><code class="language-js">const input = 'price: $5.00 (USD)';
+const escaped = RegExp.escape(input);
+// "price\\:\\ \\$5\\.00\\ \\(USD\\)"</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RegExp/escape">MDN: RegExp.escape()</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>Float16Array</code></h3>
+						<p>A typed array for 16-bit floating-point numbers. Useful for GPU data, ML models, and memory-constrained scenarios.</p>
+						<pre><code class="language-js">const f16 = new Float16Array([1.5, 2.5, 3.5]);
+console.log(f16.byteLength); // 6</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float16Array">MDN: Float16Array</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>Atomics.waitAsync()</code></h3>
+						<p>Non-blocking wait on a shared memory location — enables coordination between the main thread and workers without blocking.</p>
+						<pre><code class="language-js">const sab = new SharedArrayBuffer(4);
+const i32 = new Int32Array(sab);
+const result = Atomics.waitAsync(i32, 0, 0);
+result.value.then(() => {
+  console.log('Notified!');
+});</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Atomics/waitAsync">MDN: Atomics.waitAsync()</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>Atomics.pause()</code></h3>
+						<p>Hints to the CPU that a spin-wait loop is in progress, improving power efficiency in tight polling loops.</p>
+						<pre><code class="language-js">while (Atomics.load(i32, 0) === 0) {
+  Atomics.pause();
+}</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Atomics/pause">MDN: Atomics.pause()</a></small></p>
+					</section>
+				</section>
+
+				<!-- More Web APIs -->
+				<section>
+					<section>
+						<h2>More Web APIs</h2>
+						<ul>
+							<li><code>ClipboardItem.supports()</code></li>
+							<li>Screen Wake Lock</li>
+							<li><code>Intl.DurationFormat</code></li>
+						</ul>
+					</section>
+
+					<section>
+						<h3><code>ClipboardItem.supports()</code></h3>
+						<p>Check if a MIME type is supported for clipboard read/write before attempting the operation.</p>
+						<pre><code class="language-js">if (ClipboardItem.supports('image/png')) {
+  // safe to write PNG to clipboard
+}</code></pre>
+						<p><small><a href="https://web.dev/blog/baseline-clipboard-item-supports">web.dev: ClipboardItem.supports()</a></small></p>
+					</section>
+
+					<section>
+						<h3>Screen Wake Lock</h3>
+						<p>Prevents the screen from dimming or locking — great for recipe apps, presentations, and kiosk displays.</p>
+						<pre><code class="language-js">const wakeLock =
+  await navigator.wakeLock.request('screen');
+
+// Release when done
+wakeLock.release();</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/API/Screen_Wake_Lock_API">MDN: Screen Wake Lock API</a></small></p>
+					</section>
+
+					<section>
+						<h3><code>Intl.DurationFormat</code></h3>
+						<p>Locale-aware formatting of durations — hours, minutes, seconds — without external libraries.</p>
+						<pre><code class="language-js">const fmt = new Intl.DurationFormat('en', {
+  style: 'long'
+});
+fmt.format({ hours: 1, minutes: 30 });
+// "1 hour, 30 minutes"</code></pre>
+						<p><small><a href="https://web.dev/blog/intl-durationformat-baseline">web.dev: Intl.DurationFormat</a></small></p>
+					</section>
+				</section>
+
+				<!-- Closing -->
+				<section>
+					<h2>Learn More</h2>
+					<ul>
+						<li><a href="https://web.dev/baseline/2025">web.dev/baseline/2025</a></li>
+						<li><a href="https://web.dev/baseline">What is Baseline?</a></li>
+						<li><a href="https://web.dev/series/baseline-newly-available">Baseline Newly Available Series</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="icons/Geometrisk.svg" alt="" class="title-icon" />
+					<h1>Thank you!</h1>
+					<p>Questions?</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="dist/plugin/notes.js"></script>
+		<script src="dist/plugin/markdown.js"></script>
+		<script src="dist/plugin/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+			});
+		</script>
+	</body>
+</html>

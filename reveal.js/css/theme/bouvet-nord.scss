@@ -1,0 +1,97 @@
+/**
+ * Bouvet Nord theme for reveal.js
+ * Based on the Bouvet Nord color palette
+ */
+
+// Load utils
+@use 'sass:color';
+@use 'template/mixins' as mixins;
+
+$bouvet-colossus: #11133C;
+$bouvet-nerdy-off-white: #F9EAD4;
+$bouvet-boris-oransj: #F9A86F;
+$bouvet-hal-rod: #EB1D4B;
+$bouvet-network-green: #79FE9D;
+$bouvet-cloak-bla: #0617BF;
+$bouvet-8080-bla: #1D43C6;
+$bouvet-worp-bla: #C3D5E1;
+
+// Inject theme variables
+@use 'template/settings' with (
+	$background-color: $bouvet-colossus,
+
+	$main-font: "'Source Sans Pro', Helvetica, sans-serif",
+	$main-font-size: 42px,
+	$main-color: $bouvet-nerdy-off-white,
+
+	$heading-color: $bouvet-boris-oransj,
+	$heading-font: "'Source Sans Pro', Helvetica, sans-serif",
+	$heading-font-weight: 600,
+	$heading-text-transform: none,
+
+	$heading1-size: 2.5em,
+	$heading2-size: 1.6em,
+	$heading3-size: 1.3em,
+	$heading4-size: 1em,
+
+	$link-color: $bouvet-network-green,
+	$link-color-hover: color.scale($bouvet-network-green, $lightness: 20%),
+	$selection-color: $bouvet-colossus,
+	$selection-background-color: $bouvet-boris-oransj,
+
+	$code-font: "'Fira Code', 'Source Code Pro', monospace"
+);
+
+// Inject the theme template
+@use 'template/theme';
+
+// Include theme-specific fonts
+@import url('./fonts/source-sans-pro/source-sans-pro.css');
+
+// Change text colors against light slide backgrounds
+@include mixins.light-bg-text-color($bouvet-colossus);
+
+/*********************************************
+ * CUSTOM STYLES
+ *********************************************/
+
+.reveal strong,
+.reveal b {
+	color: $bouvet-boris-oransj;
+}
+
+.reveal code {
+	color: $bouvet-network-green;
+}
+
+.reveal pre {
+	border: 1px solid rgba($bouvet-worp-bla, 0.2);
+	border-radius: 6px;
+}
+
+.reveal pre code {
+	color: $bouvet-nerdy-off-white;
+	background: rgba(0, 0, 0, 0.4);
+	border-radius: 6px;
+	padding: 15px;
+}
+
+.reveal ul li::marker {
+	color: $bouvet-boris-oransj;
+}
+
+.reveal .progress {
+	color: $bouvet-boris-oransj;
+}
+
+.reveal .controls button {
+	color: $bouvet-boris-oransj;
+}
+
+.reveal small a {
+	color: $bouvet-worp-bla;
+}
+
+.reveal small a:hover {
+	color: $bouvet-network-green;
+}

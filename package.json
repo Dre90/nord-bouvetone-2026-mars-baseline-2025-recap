@@ -1,0 +1,29 @@
+{
+  "name": "nord-bouvetone-2026-mars-baseline-2025-recap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "mkdir -p lib/reveal.js && cp -r node_modules/reveal.js/dist/* lib/reveal.js/",
+    "start": "npx serve .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dre90/nord-bouvetone-2026-mars-baseline-2025-recap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Dre90/nord-bouvetone-2026-mars-baseline-2025-recap/issues"
+  },
+  "homepage": "https://github.com/Dre90/nord-bouvetone-2026-mars-baseline-2025-recap#readme",
+  "dependencies": {
+    "reveal.js": "^6.0.0"
+  },
+  "devDependencies": {
+    "serve": "^14.2.6"
+  }
+}
