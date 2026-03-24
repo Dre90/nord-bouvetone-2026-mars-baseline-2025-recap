@@ -55,6 +55,11 @@
 					<h1>Baseline 2025</h1>
 					<p>Web Platform features you can now use everywhere</p>
 					<p><small>Source: <a href="https://web.dev/baseline/2025">web.dev/baseline/2025</a></small></p>
+					<aside class="notes">
+						Welcome! Today we're looking at web platform features that became part of Baseline in 2025.
+						These are features that now work across all major browsers — Chrome, Edge, Firefox, and Safari.
+						The content is based on the official Baseline 2025 recap from web.dev.
+					</aside>
 				</section>
 
 				<!-- What is Baseline? -->
@@ -62,6 +67,12 @@
 					<h2>What is Baseline?</h2>
 					<p>Baseline gives you clear information about which web platform features are safe to use in your projects today.</p>
 					<p>A feature is <strong>Baseline</strong> when it works across all major browsers.</p>
+					<aside class="notes">
+						Baseline is an initiative by the W3C WebDX Community Group.
+						A feature becomes "Baseline Newly available" once it ships in the latest stable version of all major browsers.
+						After 30 months it moves to "Baseline Widely available".
+						This gives developers a clear, trustworthy signal for when a feature is safe to adopt without polyfills.
+					</aside>
 				</section>
 
 				<!-- ========================== -->
@@ -79,6 +90,11 @@
 							<li><code>print-color-adjust</code></li>
 							<li><code>font-family: math</code></li>
 						</ul>
+						<aside class="notes">
+							Let's start with CSS features for styling and layout.
+							We have five features here: scoped styling, a big performance win with content-visibility,
+							cross-browser scrollbar theming, print control, and a math font family.
+						</aside>
 					</section>
 
 					<section>
@@ -88,6 +104,12 @@
   p { color: gray; }
 }</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/Reference/At-rules/@scope">MDN: @scope</a></small></p>
+						<aside class="notes">
+							@scope lets you constrain CSS rules to a subtree of the DOM.
+							The "to" clause sets a lower boundary, so rules don't leak into nested components.
+							This is a native alternative to BEM naming conventions or CSS Modules for avoiding style collisions.
+							Especially useful in design systems where components are composed together.
+						</aside>
 					</section>
 
 					<section>
@@ -97,6 +119,12 @@
   scrollbar-color: #6969dd #e0e0e0;
 }</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/scrollbar-color">MDN: scrollbar-color</a></small></p>
+						<aside class="notes">
+							Before this, styling scrollbars required WebKit-specific pseudo-elements that didn't work in Firefox.
+							Now you can set the thumb and track color with a single standard property.
+							The first value is the thumb color, the second is the track color.
+							Great for dark-mode theming where default scrollbars look out of place.
+						</aside>
 					</section>
 
 					<section>
@@ -107,6 +135,12 @@
   contain-intrinsic-size: auto 500px;
 }</code></pre>
 						<p><small><a href="https://web.dev/articles/content-visibility">web.dev: content-visibility</a></small></p>
+						<aside class="notes">
+							content-visibility: auto tells the browser to skip rendering of off-screen sections entirely.
+							contain-intrinsic-size gives the browser a placeholder size so scrollbar height stays correct.
+							This can improve initial render time dramatically on long pages — web.dev reported 7x rendering speedups in some cases.
+							Became Baseline Newly available in late 2024/early 2025.
+						</aside>
 					</section>
 
 					<section>
@@ -116,6 +150,11 @@
   font-family: math;
 }</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/font-family">MDN: font-family</a></small></p>
+						<aside class="notes">
+							A new generic font family keyword specifically for mathematical notation.
+							Browsers map it to an appropriate math font like Latin Modern Math or STIX Two Math.
+							This ensures MathML content looks consistent across browsers without specifying exact font names.
+						</aside>
 					</section>
 
 					<section>
@@ -125,6 +164,12 @@
   print-color-adjust: exact;
 }</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/print-color-adjust">MDN: print-color-adjust</a></small></p>
+						<aside class="notes">
+							By default browsers may strip background colors and images when printing to save ink.
+							Setting print-color-adjust to exact tells the browser to preserve the original colors.
+							Essential for charts, branded materials, and data visualizations that rely on color to convey meaning.
+							This replaces the old non-standard -webkit-print-color-adjust.
+						</aside>
 					</section>
 				</section>
 
@@ -137,6 +182,10 @@
 							<li><code>abs()</code></li>
 							<li>Single stop color gradients</li>
 						</ul>
+						<aside class="notes">
+							Next up: new CSS math functions and a small but useful gradient improvement.
+							These expand what you can do with pure CSS calculations without needing JavaScript.
+						</aside>
 					</section>
 
 					<section>
@@ -148,6 +197,11 @@
   );
 }</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/sign">MDN: sign()</a></small></p>
+						<aside class="notes">
+							sign() returns -1, 0, or 1.
+							In this example we extract the direction from a custom property and multiply it by a fixed distance.
+							Useful for directional animations and layouts that need to respond to positive/negative values.
+						</aside>
 					</section>
 
 					<section>
@@ -157,6 +211,11 @@
   width: abs(var(--value) * 1px);
 }</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/abs">MDN: abs()</a></small></p>
+						<aside class="notes">
+							abs() complements sign() — together they let you split a value into its magnitude and direction.
+							Here we use it for a bar chart where the value can be negative but the width must be positive.
+							Both sign() and abs() are part of the CSS Values Level 4 spec.
+						</aside>
 					</section>
 
 					<section>
@@ -166,6 +225,11 @@
   background: linear-gradient(tomato);
 }</code></pre>
 						<p><small><a href="https://web-platform-dx.github.io/web-features-explorer/features/single-color-gradients/">Web Features Explorer</a></small></p>
+						<aside class="notes">
+							Previously, gradients required at least two color stops or they were invalid.
+							Now a single-stop gradient is valid and renders as a solid color.
+							This is handy for fallback patterns and generated backgrounds in CSS.
+						</aside>
 					</section>
 				</section>
 
@@ -178,6 +242,12 @@
 							<li><code>view-transition-class</code></li>
 							<li>Same-document view transitions</li>
 						</ul>
+						<aside class="notes">
+							View Transitions are one of the most exciting additions to the platform.
+							They let you animate between DOM states with smooth crossfade-like effects, natively.
+							No more reach for FLIP libraries or JavaScript animation frameworks for basic transitions.
+							Became Baseline Newly available in October 2025.
+						</aside>
 					</section>
 
 					<section>
@@ -188,6 +258,11 @@
   animation-duration: 0.3s;
 }</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/API/View_Transition_API">MDN: View Transition API</a></small></p>
+						<aside class="notes">
+							The View Transition API captures a snapshot of the old state, then cross-fades to the new state.
+							You can customize the animation using standard CSS on the ::view-transition pseudo-elements.
+							The browser handles the screenshot, overlay, and cleanup automatically.
+						</aside>
 					</section>
 
 					<section>
@@ -200,6 +275,11 @@
   animation-duration: 0.5s;
 }</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/view-transition-class">MDN: view-transition-class</a></small></p>
+						<aside class="notes">
+							Without view-transition-class you'd have to style each transitioning element individually by its view-transition-name.
+							With this property you assign a class name, so you can write one CSS rule that matches all elements in that group.
+							Perfect when you have a list of cards or grid items that should all animate the same way.
+						</aside>
 					</section>
 
 					<section>
@@ -209,6 +289,12 @@
   updateDOM(); // swap content
 });</code></pre>
 						<p><small><a href="https://web.dev/blog/same-document-view-transitions-are-now-baseline-newly-available">web.dev: Same-document view transitions</a></small></p>
+						<aside class="notes">
+							Same-document view transitions became Baseline Newly available in October 2025.
+							You call document.startViewTransition with a callback that makes DOM changes.
+							The browser takes a snapshot, runs your callback, then animates the transition.
+							This is the SPA use case — cross-document view transitions for MPAs are still being worked on.
+						</aside>
 					</section>
 				</section>
 
@@ -221,6 +307,11 @@
 							<li><code>contenteditable="plaintext-only"</code></li>
 							<li><code>&lt;link rel="dns-prefetch"&gt;</code></li>
 						</ul>
+						<aside class="notes">
+							Three HTML features that reduce the need for JavaScript.
+							The Popover API is probably the biggest one here — it replaces a ton of custom tooltip and dropdown code.
+							We also have a refinement for contenteditable and a performance hint.
+						</aside>
 					</section>
 
 					<section>
@@ -229,6 +320,12 @@
 						<pre><code class="language-html">&lt;link rel="dns-prefetch"
       href="https://api.example.com"&gt;</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/Performance/Guides/dns-prefetch">MDN: dns-prefetch</a></small></p>
+						<aside class="notes">
+							dns-prefetch has been around for a while in some browsers, but it's now officially Baseline.
+							DNS resolution can take 20–120 ms. Pre-resolving domains you know the user will need saves that delay.
+							Use it for third-party APIs, CDNs, or analytics endpoints.
+							It's free — the browser just does a DNS lookup with no actual connection.
+						</aside>
 					</section>
 
 					<section>
@@ -238,6 +335,12 @@
   Type here…
 &lt;/div&gt;</code></pre>
 						<p><small><a href="https://web.dev/blog/contenteditable-plaintext-only-baseline">web.dev: contenteditable plaintext-only</a></small></p>
+						<aside class="notes">
+							Became Baseline Newly available in March 2025.
+							Before this, contenteditable would paste rich HTML which you then had to sanitize.
+							With plaintext-only, the browser strips all formatting automatically.
+							Advantage over textarea: it supports dynamic sizing, doesn't require a form, and can be styled more freely.
+						</aside>
 					</section>
 
 					<section>
@@ -250,6 +353,13 @@
   Popover content!
 &lt;/div&gt;</code></pre>
 						<p><small><a href="https://web.dev/blog/popover-baseline">web.dev: Popover API</a></small></p>
+						<aside class="notes">
+							The Popover API became Baseline Newly available in February 2025.
+							It renders content in the top layer — above everything else, no z-index wars.
+							Light dismiss means clicking outside automatically closes it.
+							No JavaScript is needed for the basic toggle behavior — just the popover attribute and popovertarget.
+							This replaces a huge amount of custom dropdown and tooltip JavaScript.
+						</aside>
 					</section>
 				</section>
 
@@ -266,6 +376,11 @@
 							<li>Event Timing API</li>
 							<li><code>scrollend</code> event</li>
 						</ul>
+						<aside class="notes">
+							Now we switch to JavaScript and Web APIs, starting with performance.
+							Two Core Web Vitals APIs are now Baseline, plus a much-needed scroll event.
+							LCP and Event Timing became Baseline in December 2025.
+						</aside>
 					</section>
 
 					<section>
@@ -278,6 +393,12 @@
 }).observe({ type: 'largest-contentful-paint',
              buffered: true });</code></pre>
 						<p><small><a href="https://web.dev/blog/lcp-and-inp-are-now-baseline-newly-available">web.dev: LCP &amp; INP</a></small></p>
+						<aside class="notes">
+							LCP is one of three Core Web Vitals used by Google for search ranking.
+							A good LCP is under 2.5 seconds.
+							The PerformanceObserver API lets you measure LCP in the field from real users.
+							Both LCP and INP (Interaction to Next Paint) became Baseline in December 2025.
+						</aside>
 					</section>
 
 					<section>
@@ -289,6 +410,12 @@
   }
 }).observe({ type: 'event', buffered: true });</code></pre>
 						<p><small><a href="https://web.dev/blog/lcp-and-inp-are-now-baseline-newly-available">web.dev: Event Timing</a></small></p>
+						<aside class="notes">
+							Event Timing underpins the INP metric — Interaction to Next Paint.
+							INP replaced FID (First Input Delay) as a Core Web Vital in March 2024.
+							It measures the full latency from user input to the next frame being painted.
+							A good INP is under 200 milliseconds.
+						</aside>
 					</section>
 
 					<section>
@@ -298,6 +425,12 @@
   console.log('Scrolling finished!');
 });</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/API/Document/scrollend_event">MDN: scrollend event</a></small></p>
+						<aside class="notes">
+							Before scrollend, developers had to debounce the scroll event and guess when scrolling stopped.
+							Common patterns used 100–200ms timeouts which were unreliable.
+							scrollend fires reliably when the scroll action is truly complete, including momentum scrolling on touch devices.
+							Perfect for lazy-loading, snap-point detection, or analytics.
+						</aside>
 					</section>
 				</section>
 
@@ -311,6 +444,11 @@
 							<li><code>dialog.requestClose()</code></li>
 							<li>Selection composed ranges</li>
 						</ul>
+						<aside class="notes">
+							Four features that improve how we interact with the DOM.
+							Invoker Commands extends the declarative pattern we saw with popovers.
+							The other three are more specialized but solve real pain points for editor and dialog developers.
+						</aside>
 					</section>
 
 					<section>
@@ -322,6 +460,12 @@
 &lt;/button&gt;
 &lt;dialog id="my-dialog"&gt;Hello!&lt;/dialog&gt;</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/API/Invoker_Commands_API">MDN: Invoker Commands API</a></small></p>
+						<aside class="notes">
+							Invoker Commands let you connect a button to an action on another element using HTML attributes.
+							The commandfor attribute points to the target element, and command specifies the action.
+							Built-in commands include show-modal, close, toggle-popover, play, and pause.
+							This follows the same "no-JS-needed" philosophy as the Popover API.
+						</aside>
 					</section>
 
 					<section>
@@ -334,6 +478,11 @@
   console.log(pos.offsetNode, pos.offset);
 });</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/API/Document/caretPositionFromPoint">MDN: caretPositionFromPoint()</a></small></p>
+						<aside class="notes">
+							Given x, y coordinates, this returns which text node and character offset the point lands on.
+							Chrome previously had caretRangeFromPoint, but the standard API is caretPositionFromPoint.
+							Now interoperable across all browsers. Essential for annotation tools, custom cursors, and text editors.
+						</aside>
 					</section>
 
 					<section>
@@ -343,6 +492,12 @@
 // Fires 'cancel' event before closing
 dialog.requestClose();</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/requestClose">MDN: dialog.requestClose()</a></small></p>
+						<aside class="notes">
+							Unlike dialog.close() which closes immediately, requestClose() fires a cancel event first.
+							You can call preventDefault() on the cancel event to keep the dialog open.
+							Classic use case: "You have unsaved changes. Are you sure you want to close?"
+							This also aligns with the behavior when a user presses Escape on a modal dialog.
+						</aside>
 					</section>
 
 					<section>
@@ -353,6 +508,12 @@ const ranges = sel.getComposedRanges(
   shadowRoot
 );</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/API/Selection/getComposedRanges">MDN: getComposedRanges()</a></small></p>
+						<aside class="notes">
+							The regular Selection API can't see inside Shadow DOM boundaries.
+							getComposedRanges() solves this by returning ranges that span across shadow roots.
+							You pass the shadow roots you want to include as arguments.
+							Critical for rich text editors built with web components.
+						</aside>
 					</section>
 				</section>
 
@@ -366,6 +527,11 @@ const ranges = sel.getComposedRanges(
 							<li>URLPattern</li>
 							<li>Uint8Array base64 &amp; hex conversion</li>
 						</ul>
+						<aside class="notes">
+							Four features around data handling and parsing.
+							JSON imports and URLPattern are probably the ones most of us can use right away.
+							Uint8Array conversions are a nice quality-of-life improvement for binary data handling.
+						</aside>
 					</section>
 
 					<section>
@@ -376,6 +542,12 @@ const ranges = sel.getComposedRanges(
 );
 element.setHTMLUnsafe(htmlString);</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/API/Document/parseHTMLUnsafe_static">MDN: parseHTMLUnsafe()</a></small></p>
+						<aside class="notes">
+							These methods parse HTML including declarative Shadow DOM templates.
+							The "Unsafe" in the name means they don't sanitize the HTML — similar to innerHTML.
+							The key difference from DOMParser is support for declarative shadow DOM.
+							Use these when you need to hydrate server-rendered web components.
+						</aside>
 					</section>
 
 					<section>
@@ -387,6 +559,12 @@ element.setHTMLUnsafe(htmlString);</code></pre>
 pattern.test('https://example.com/users/42');
 // true</code></pre>
 						<p><small><a href="https://web.dev/blog/baseline-urlpattern">web.dev: URLPattern</a></small></p>
+						<aside class="notes">
+							URLPattern became Baseline Newly available in September 2025.
+							It uses the same syntax as path-to-regexp which powers Express.js and many other routers.
+							You can match pathnames, hostnames, protocols, and more.
+							Useful in Service Workers for route-based caching strategies, and in any URL routing logic.
+						</aside>
 					</section>
 
 					<section>
@@ -397,6 +575,12 @@ pattern.test('https://example.com/users/42');
 
 console.log(data.version);</code></pre>
 						<p><small><a href="https://web.dev/blog/json-imports-baseline-newly-available">web.dev: JSON imports</a></small></p>
+						<aside class="notes">
+							JSON import attributes became Baseline Newly available in June 2025.
+							The "with" keyword tells the browser what type of module to expect.
+							This replaces the older "assert" syntax from the original proposal.
+							The JSON is imported as a default export — a plain JavaScript object. No fetch + parse needed.
+						</aside>
 					</section>
 
 					<section>
@@ -406,6 +590,11 @@ console.log(data.version);</code></pre>
 const hex = bytes.toHex(); // "48656c6c6f"
 const b64 = bytes.toBase64(); // "SGVsbG8="</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromBase64">MDN: Uint8Array.fromBase64()</a></small></p>
+						<aside class="notes">
+							Before this, converting binary data to base64 required awkward workarounds with btoa/atob and String.fromCharCode.
+							Now Uint8Array has native fromBase64(), toBase64(), fromHex(), and toHex() methods.
+							Clean and efficient. Useful for cryptography, file handling, and binary protocols.
+						</aside>
 					</section>
 				</section>
 
@@ -420,6 +609,12 @@ const b64 = bytes.toBase64(); // "SGVsbG8="</code></pre>
 							<li><code>Float16Array</code></li>
 							<li><code>Atomics.waitAsync()</code> &amp; <code>Atomics.pause()</code></li>
 						</ul>
+						<aside class="notes">
+							Now we get to core JavaScript language features.
+							Iterator helpers and Promise.try are the ones you'll probably use most often.
+							Float16Array is niche but important for ML/GPU work.
+							Atomics additions are for SharedArrayBuffer coordination.
+						</aside>
 					</section>
 
 					<section>
@@ -429,6 +624,12 @@ const b64 = bytes.toBase64(); // "SGVsbG8="</code></pre>
   .filter(n => n % 2 === 0)
   .toArray(); // [2, 4]</code></pre>
 						<p><small><a href="https://web.dev/blog/baseline-iterator-helpers">web.dev: Iterator helpers</a></small></p>
+						<aside class="notes">
+							Iterator helpers became Baseline Newly available in March 2025.
+							They add .map(), .filter(), .take(), .drop(), .flatMap(), .reduce(), .forEach(), .some(), .every(), .find(), and .toArray().
+							Unlike Array methods, these are lazy — they only process elements as needed.
+							Works on Map, Set, generators, and any iterable. A big ergonomic win.
+						</aside>
 					</section>
 
 					<section>
@@ -440,6 +641,13 @@ const b64 = bytes.toBase64(); // "SGVsbG8="</code></pre>
   console.log(result);
 });</code></pre>
 						<p><small><a href="https://web.dev/blog/promise-try-baseline">web.dev: Promise.try</a></small></p>
+						<aside class="notes">
+							Became Baseline Newly available in January 2025.
+							If the callback throws synchronously, it’s caught as a rejected Promise.
+							If it returns a value, it’s wrapped in a resolved Promise.
+							If it returns a Promise, it’s returned as-is.
+							Perfect for APIs that accept either sync or async callbacks.
+						</aside>
 					</section>
 
 					<section>
@@ -449,6 +657,11 @@ const b64 = bytes.toBase64(); // "SGVsbG8="</code></pre>
 const escaped = RegExp.escape(input);
 // "price\\:\\ \\$5\\.00\\ \\(USD\\)"</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RegExp/escape">MDN: RegExp.escape()</a></small></p>
+						<aside class="notes">
+							Every JavaScript developer has written a regex escape function at some point.
+							Now there's a built-in. RegExp.escape() escapes all characters that have special meaning in regex.
+							Useful when building regex from user input, like search-and-highlight features.
+						</aside>
 					</section>
 
 					<section>
@@ -457,6 +670,12 @@ const escaped = RegExp.escape(input);
 						<pre><code class="language-js">const f16 = new Float16Array([1.5, 2.5, 3.5]);
 console.log(f16.byteLength); // 6</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float16Array">MDN: Float16Array</a></small></p>
+						<aside class="notes">
+							Float16Array stores 16-bit floats — half the size of Float32Array.
+							Machine learning models commonly use float16 for weights and activation values.
+							Also useful for GPU interop via WebGPU, which supports float16 natively.
+							Trade-off: less precision and smaller range, but half the memory.
+						</aside>
 					</section>
 
 					<section>
@@ -469,6 +688,12 @@ result.value.then(() => {
   console.log('Notified!');
 });</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Atomics/waitAsync">MDN: Atomics.waitAsync()</a></small></p>
+						<aside class="notes">
+							Atomics.wait() blocks the thread, so it can't be used on the main thread.
+							waitAsync() returns a Promise instead, so it works everywhere.
+							This makes main-thread to worker coordination possible without polling.
+							Useful for WASM-based applications and multi-threaded data processing.
+						</aside>
 					</section>
 
 					<section>
@@ -478,6 +703,11 @@ result.value.then(() => {
   Atomics.pause();
 }</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Atomics/pause">MDN: Atomics.pause()</a></small></p>
+						<aside class="notes">
+							Atomics.pause() is a low-level hint for spin-wait loops.
+							It tells the CPU "I'm in a busy-wait loop" so it can reduce power consumption and yield execution resources.
+							Similar to the x86 PAUSE instruction. Very niche but important for high-performance concurrent code.
+						</aside>
 					</section>
 				</section>
 
@@ -490,6 +720,10 @@ result.value.then(() => {
 							<li>Screen Wake Lock</li>
 							<li><code>Intl.DurationFormat</code></li>
 						</ul>
+						<aside class="notes">
+							Three more web APIs to round things off.
+							Clipboard feature detection, keeping the screen awake, and duration formatting.
+						</aside>
 					</section>
 
 					<section>
@@ -499,6 +733,11 @@ result.value.then(() => {
   // safe to write PNG to clipboard
 }</code></pre>
 						<p><small><a href="https://web.dev/blog/baseline-clipboard-item-supports">web.dev: ClipboardItem.supports()</a></small></p>
+						<aside class="notes">
+							Became Baseline Newly available in April 2025.
+							Before this, you had to try/catch clipboard operations to see if a format was supported.
+							Now you can feature-detect upfront. Browsers support different MIME types — this lets you adapt.
+						</aside>
 					</section>
 
 					<section>
@@ -510,6 +749,12 @@ result.value.then(() => {
 // Release when done
 wakeLock.release();</code></pre>
 						<p><small><a href="https://developer.mozilla.org/docs/Web/API/Screen_Wake_Lock_API">MDN: Screen Wake Lock API</a></small></p>
+						<aside class="notes">
+							Prevents the screen from going to sleep while your app is active.
+							Use cases: cooking apps showing a recipe, navigation apps, video calls, kiosk displays.
+							The lock is automatically released when the tab becomes hidden or the document is unloaded.
+							You should re-acquire it on visibilitychange if the user returns to the tab.
+						</aside>
 					</section>
 
 					<section>
@@ -521,6 +766,12 @@ wakeLock.release();</code></pre>
 fmt.format({ hours: 1, minutes: 30 });
 // "1 hour, 30 minutes"</code></pre>
 						<p><small><a href="https://web.dev/blog/intl-durationformat-baseline">web.dev: Intl.DurationFormat</a></small></p>
+						<aside class="notes">
+							Became Baseline Newly available in March 2025.
+							Formats durations according to locale rules — styles include long, short, narrow, and digital.
+							No more hardcoding "hours" and "minutes" strings or using libraries like date-fns for this.
+							Supports years, months, weeks, days, hours, minutes, seconds, milliseconds, microseconds, nanoseconds.
+						</aside>
 					</section>
 				</section>
 
@@ -532,12 +783,21 @@ fmt.format({ hours: 1, minutes: 30 });
 						<li><a href="https://web.dev/baseline">What is Baseline?</a></li>
 						<li><a href="https://web.dev/series/baseline-newly-available">Baseline Newly Available Series</a></li>
 					</ul>
+					<aside class="notes">
+						Here are the links if you want to dive deeper.
+						The Baseline Newly Available series on web.dev has individual posts for each feature with detailed examples.
+						MDN also marks features with Baseline badges now, so you can see the status right on the docs pages.
+					</aside>
 				</section>
 
 				<section>
 					<img src="icons/Geometrisk.svg" alt="" class="title-icon" />
 					<h1>Thank you!</h1>
 					<p>Questions?</p>
+					<aside class="notes">
+						Thank you for listening! Happy to take any questions.
+						Remember: press S to open the speaker view during the presentation.
+					</aside>
 				</section>
 			</div>
 		</div>
