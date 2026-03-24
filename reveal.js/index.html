@@ -376,35 +376,6 @@
 					</section>
 
 					<section>
-						<h3><code>&lt;link rel="dns-prefetch"&gt;</code></h3>
-						<p>Tells the browser to resolve the DNS for a domain early, reducing latency when the user navigates to it.</p>
-						<pre><code class="language-html">&lt;link rel="dns-prefetch"
-      href="https://api.example.com"&gt;</code></pre>
-						<p><small><a href="https://developer.mozilla.org/docs/Web/Performance/Guides/dns-prefetch">MDN: dns-prefetch</a></small></p>
-						<aside class="notes">
-							dns-prefetch has been around for a while in some browsers, but it's now officially Baseline.
-							DNS resolution can take 20–120 ms. Pre-resolving domains you know the user will need saves that delay.
-							Use it for third-party APIs, CDNs, or analytics endpoints.
-							It's free — the browser just does a DNS lookup with no actual connection.
-						</aside>
-					</section>
-
-					<section>
-						<h3><code>contenteditable="plaintext-only"</code></h3>
-						<p>Makes an element editable but strips all formatting on paste, keeping content as plain text.</p>
-						<pre><code class="language-html">&lt;div contenteditable="plaintext-only"&gt;
-  Type here…
-&lt;/div&gt;</code></pre>
-						<p><small><a href="https://web.dev/blog/contenteditable-plaintext-only-baseline">web.dev: contenteditable plaintext-only</a></small></p>
-						<aside class="notes">
-							Became Baseline Newly available in March 2025.
-							Before this, contenteditable would paste rich HTML which you then had to sanitize.
-							With plaintext-only, the browser strips all formatting automatically.
-							Advantage over textarea: it supports dynamic sizing, doesn't require a form, and can be styled more freely.
-						</aside>
-					</section>
-
-					<section>
 						<h3>Popover API</h3>
 						<p>A built-in way to create popovers, tooltips, and menus with automatic light-dismiss and top-layer rendering. No JavaScript needed for basic use.</p>
 						<pre><code class="language-html">&lt;button popovertarget="mypopover"&gt;
@@ -465,6 +436,35 @@
 							Notice there's no JavaScript at all — just popovertarget on the button and popover on the div.
 							Click outside the popover to dismiss it — that's light dismiss, built in.
 							The popover renders in the top layer, so it appears above everything — no z-index needed.
+						</aside>
+					</section>
+
+					<section>
+						<h3><code>contenteditable="plaintext-only"</code></h3>
+						<p>Makes an element editable but strips all formatting on paste, keeping content as plain text.</p>
+						<pre><code class="language-html">&lt;div contenteditable="plaintext-only"&gt;
+  Type here…
+&lt;/div&gt;</code></pre>
+						<p><small><a href="https://web.dev/blog/contenteditable-plaintext-only-baseline">web.dev: contenteditable plaintext-only</a></small></p>
+						<aside class="notes">
+							Became Baseline Newly available in March 2025.
+							Before this, contenteditable would paste rich HTML which you then had to sanitize.
+							With plaintext-only, the browser strips all formatting automatically.
+							Advantage over textarea: it supports dynamic sizing, doesn't require a form, and can be styled more freely.
+						</aside>
+					</section>
+
+					<section>
+						<h3><code>&lt;link rel="dns-prefetch"&gt;</code></h3>
+						<p>Tells the browser to resolve the DNS for a domain early, reducing latency when the user navigates to it.</p>
+						<pre><code class="language-html">&lt;link rel="dns-prefetch"
+      href="https://api.example.com"&gt;</code></pre>
+						<p><small><a href="https://developer.mozilla.org/docs/Web/Performance/Guides/dns-prefetch">MDN: dns-prefetch</a></small></p>
+						<aside class="notes">
+							dns-prefetch has been around for a while in some browsers, but it's now officially Baseline.
+							DNS resolution can take 20–120 ms. Pre-resolving domains you know the user will need saves that delay.
+							Use it for third-party APIs, CDNs, or analytics endpoints.
+							It's free — the browser just does a DNS lookup with no actual connection.
 						</aside>
 					</section>
 				</section>
@@ -641,6 +641,22 @@ const ranges = sel.getComposedRanges(
 					</section>
 
 					<section>
+						<h3>JSON import attributes</h3>
+						<p>Import JSON files directly in JavaScript modules using the <code>with</code> syntax.</p>
+						<pre><code class="language-js">import data from './config.json'
+  with { type: 'json' };
+
+console.log(data.version);</code></pre>
+						<p><small><a href="https://web.dev/blog/json-imports-baseline-newly-available">web.dev: JSON imports</a></small></p>
+						<aside class="notes">
+							JSON import attributes became Baseline Newly available in June 2025.
+							The "with" keyword tells the browser what type of module to expect.
+							This replaces the older "assert" syntax from the original proposal.
+							The JSON is imported as a default export — a plain JavaScript object. No fetch + parse needed.
+						</aside>
+					</section>
+
+					<section>
 						<h3>Unsanitized HTML parsing methods</h3>
 						<p><code>Document.parseHTMLUnsafe()</code> and <code>Element.setHTMLUnsafe()</code> parse HTML strings including declarative Shadow DOM.</p>
 						<pre><code class="language-js">const doc = Document.parseHTMLUnsafe(
@@ -670,22 +686,6 @@ pattern.test('https://example.com/users/42');
 							It uses the same syntax as path-to-regexp which powers Express.js and many other routers.
 							You can match pathnames, hostnames, protocols, and more.
 							Useful in Service Workers for route-based caching strategies, and in any URL routing logic.
-						</aside>
-					</section>
-
-					<section>
-						<h3>JSON import attributes</h3>
-						<p>Import JSON files directly in JavaScript modules using the <code>with</code> syntax.</p>
-						<pre><code class="language-js">import data from './config.json'
-  with { type: 'json' };
-
-console.log(data.version);</code></pre>
-						<p><small><a href="https://web.dev/blog/json-imports-baseline-newly-available">web.dev: JSON imports</a></small></p>
-						<aside class="notes">
-							JSON import attributes became Baseline Newly available in June 2025.
-							The "with" keyword tells the browser what type of module to expect.
-							This replaces the older "assert" syntax from the original proposal.
-							The JSON is imported as a default export — a plain JavaScript object. No fetch + parse needed.
 						</aside>
 					</section>
 
