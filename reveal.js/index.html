@@ -296,6 +296,67 @@
 							This is the SPA use case — cross-document view transitions for MPAs are still being worked on.
 						</aside>
 					</section>
+
+					<section>
+						<h3>Demo: View Transitions</h3>
+						<iframe srcdoc='
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap");
+  *, *::before, *::after { box-sizing: border-box; }
+  body { font-family: Source Sans Pro, Helvetica, sans-serif; margin: 0; padding: 20px; background: #11133C; color: #F9EAD4; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .card { view-transition-name: card; background: rgba(0,0,0,0.4); border: 1px solid rgba(195,213,225,0.2); border-radius: 12px; padding: 24px; width: 280px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,.3); }
+  .card h2 { margin: 0 0 8px; font-size: 1.2em; color: #F9A86F; }
+  .card p { margin: 0; color: #F9EAD4; font-size: .9em; }
+  .card img { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 12px; view-transition-name: avatar; }
+  .expanded .card { width: 340px; background: rgba(6,23,191,0.3); }
+  .expanded .card img { width: 100px; height: 100px; }
+  button { background: #F9A86F; color: #11133C; border: none; padding: 10px 24px; border-radius: 8px; font-size: 1em; cursor: pointer; font-weight: 600; font-family: inherit; }
+  button:hover { background: #EB1D4B; color: #F9EAD4; }
+  ::view-transition-old(card), ::view-transition-new(card) { animation-duration: 0.4s; }
+  ::view-transition-old(avatar), ::view-transition-new(avatar) { animation-duration: 0.4s; }
+</style>
+</head>
+<body>
+  <div id="container">
+    <div class="card">
+      <img src="https://api.dicebear.com/7.x/initials/svg?seed=BN&backgroundColor=F9A86F" alt="Avatar">
+      <h2>Nord Developer</h2>
+      <p>Frontend Engineer</p>
+    </div>
+  </div>
+  <button onclick="toggle()">Toggle View Transition</button>
+  <script>
+    let expanded = false;
+    function toggle() {
+      document.startViewTransition(() => {
+        expanded = !expanded;
+        const container = document.getElementById("container");
+        container.className = expanded ? "expanded" : "";
+        const card = container.querySelector(".card");
+        if (expanded) {
+          card.querySelector("h2").textContent = "Nord Developer";
+          card.querySelector("p").textContent = "Frontend Engineer at Bouvet\nLoves the web platform!";
+        } else {
+          card.querySelector("h2").textContent = "Nord Developer";
+          card.querySelector("p").textContent = "Frontend Engineer";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+' style="width: 400px; height: 380px; border: 1px solid rgba(195,213,225,0.2); border-radius: 12px; background: #11133C;"></iframe>
+						<p><small>Click the button to see a same-document view transition in action</small></p>
+						<aside class="notes">
+							Live demo! Click the button to toggle between compact and expanded card.
+							Notice the smooth crossfade animation — the browser snapshots the old state, applies the DOM change, then animates.
+							The avatar and card both have view-transition-name set, so they animate independently.
+							All of this with just document.startViewTransition() and CSS — no animation library.
+						</aside>
+					</section>
 				</section>
 
 				<!-- HTML Features -->
@@ -359,6 +420,51 @@
 							Light dismiss means clicking outside automatically closes it.
 							No JavaScript is needed for the basic toggle behavior — just the popover attribute and popovertarget.
 							This replaces a huge amount of custom dropdown and tooltip JavaScript.
+						</aside>
+					</section>
+
+					<section>
+						<h3>Demo: Popover API</h3>
+						<iframe srcdoc='
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap");
+  body { font-family: Source Sans Pro, Helvetica, sans-serif; margin: 0; padding: 30px; background: #11133C; color: #F9EAD4; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  button { background: #F9A86F; color: #11133C; border: none; padding: 10px 24px; border-radius: 8px; font-size: 1em; cursor: pointer; font-weight: 600; font-family: inherit; }
+  button:hover { background: #EB1D4B; color: #F9EAD4; }
+  [popover] { background: #11133C; color: #F9EAD4; border: 2px solid #F9A86F; border-radius: 12px; padding: 20px 28px; font-size: 1em; font-family: Source Sans Pro, Helvetica, sans-serif; box-shadow: 0 8px 32px rgba(0,0,0,.5); }
+  [popover] strong { color: #F9A86F; }
+  [popover]::backdrop { background: rgba(0,0,0,.4); }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .info { font-size: .85em; color: #C3D5E1; text-align: center; max-width: 300px; margin-top: 8px; }
+  .info code { color: #79FE9D; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <button popovertarget="pop1">Toggle Popover</button>
+    <button popovertarget="pop2">Show Info</button>
+  </div>
+  <div id="pop1" popover>
+    <strong>Hello from a Popover!</strong>
+    <p style="margin:8px 0 0;color:#F9EAD4">Click outside to dismiss.<br>No JavaScript involved ✨</p>
+  </div>
+  <div id="pop2" popover>
+    <strong>Popover API</strong>
+    <p style="margin:8px 0 0;color:#F9EAD4">Renders in the top layer.<br>Built-in light dismiss.<br>Zero JavaScript needed.</p>
+  </div>
+  <p class="info">Pure HTML — the buttons use <code>popovertarget</code>, the divs have the <code>popover</code> attribute. That is it.</p>
+</body>
+</html>
+' style="width: 440px; height: 320px; border: 1px solid rgba(195,213,225,0.2); border-radius: 12px; background: #11133C;"></iframe>
+						<p><small>Click the buttons — pure HTML, zero JavaScript</small></p>
+						<aside class="notes">
+							Live demo! Click the buttons to toggle popovers.
+							Notice there's no JavaScript at all — just popovertarget on the button and popover on the div.
+							Click outside the popover to dismiss it — that's light dismiss, built in.
+							The popover renders in the top layer, so it appears above everything — no z-index needed.
 						</aside>
 					</section>
 				</section>
@@ -629,6 +735,77 @@ const b64 = bytes.toBase64(); // "SGVsbG8="</code></pre>
 							They add .map(), .filter(), .take(), .drop(), .flatMap(), .reduce(), .forEach(), .some(), .every(), .find(), and .toArray().
 							Unlike Array methods, these are lazy — they only process elements as needed.
 							Works on Map, Set, generators, and any iterable. A big ergonomic win.
+						</aside>
+					</section>
+
+					<section>
+						<h3>Demo: Iterator Helpers</h3>
+						<iframe srcdoc='
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap");
+  body { font-family: Fira Code, Source Code Pro, monospace; margin: 0; padding: 16px; background: #11133C; color: #F9EAD4; font-size: 14px; }
+  .console { background: rgba(0,0,0,0.4); border: 1px solid rgba(195,213,225,0.2); border-radius: 8px; padding: 16px; overflow: auto; max-height: 230px; }
+  .line { margin: 2px 0; white-space: pre-wrap; }
+  .prompt { color: #F9A86F; }
+  .result { color: #79FE9D; }
+  .comment { color: #C3D5E1; opacity: 0.6; }
+  button { background: #F9A86F; color: #11133C; border: none; padding: 8px 20px; border-radius: 6px; font-size: 13px; cursor: pointer; font-weight: 600; margin: 10px 4px 0; font-family: inherit; }
+  button:hover { background: #EB1D4B; color: #F9EAD4; }
+  .buttons { text-align: center; }
+</style>
+</head>
+<body>
+  <div class="console" id="console"></div>
+  <div class="buttons">
+    <button onclick="runFilter()">filter + take</button>
+    <button onclick="runMap()">map + toArray</button>
+    <button onclick="runGenerator()">generator + drop</button>
+    <button onclick="clearConsole()">Clear</button>
+  </div>
+  <script>
+    const con = document.getElementById("console");
+    function log(prompt, result, comment) {
+      con.innerHTML += `<div class="line"><span class="prompt">&gt; </span>${prompt}</div>`;
+      if (result !== undefined) con.innerHTML += `<div class="line"><span class="result">${result}</span></div>`;
+      if (comment) con.innerHTML += `<div class="line"><span class="comment">// ${comment}</span></div>`;
+      con.scrollTop = con.scrollHeight;
+    }
+    function runFilter() {
+      log("Iterator.from([1,2,3,4,5,6,7,8,9,10])");
+      log("  .filter(n =&gt; n % 2 === 0)");
+      log("  .take(3).toArray()");
+      const r = Iterator.from([1,2,3,4,5,6,7,8,9,10]).filter(n => n % 2 === 0).take(3).toArray();
+      log("", JSON.stringify(r), "Lazy! Only processes elements until 3 evens are found");
+    }
+    function runMap() {
+      log("new Map([[\"a\",1],[\"b\",2],[\"c\",3]]).entries()");
+      log("  .map(([k,v]) =&gt; \`${k}=${v*10}\`)");
+      log("  .toArray()");
+      const r = new Map([["a",1],["b",2],["c",3]]).entries().map(([k,v]) => `${k}=${v*10}`).toArray();
+      log("", JSON.stringify(r), "Works on Map iterators, not just arrays!");
+    }
+    function runGenerator() {
+      log("function* fib() { let a=0,b=1; while(true) { yield a; [a,b]=[b,a+b]; } }");
+      log("fib().drop(5).take(5).toArray()");
+      function* fib() { let a=0,b=1; while(true) { yield a; [a,b]=[b,a+b]; } }
+      const r = fib().drop(5).take(5).toArray();
+      log("", JSON.stringify(r), "Lazy evaluation on infinite generators!");
+    }
+    function clearConsole() { con.innerHTML = ""; }
+  </script>
+</body>
+</html>
+' style="width: 520px; height: 340px; border: 1px solid rgba(195,213,225,0.2); border-radius: 12px; background: #11133C;"></iframe>
+						<p><small>Click the buttons to run iterator examples live</small></p>
+						<aside class="notes">
+							Live demo! Three examples:
+							1. filter + take — shows lazy evaluation, only processes until 3 evens are found.
+							2. map on a Map iterator — demonstrates it works on any iterable, not just arrays.
+							3. Generator + drop — infinite Fibonacci sequence, take 5 values after skipping 5. Lazy eval makes this possible.
+							All running natively in the browser — no polyfills!
 						</aside>
 					</section>
 
