@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="64" viewBox="0 0 360 64" fill="none">
+  <rect width="360" height="64" rx="12" fill="#e3f2fd"/>
+  <g transform="translate(16,12)">
+    <path d="M6 20l8 8 16-16" stroke="#1565c0" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M2 28l6 6 12-12" stroke="#90caf9" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="60" y="30" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#0d47a1">Baseline</text>
+  <text x="132" y="30" font-family="system-ui, sans-serif" font-size="16" font-weight="400" fill="#1565c0">2025</text>
+  <rect x="168" y="16" rx="4" ry="4" width="130" height="22" fill="#1565c0"/>
+  <text x="233" y="31" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">NEWLY AVAILABLE</text>
+  <g transform="translate(272,16)">
+    <circle cx="8" cy="8" r="7" fill="#fff" stroke="#90caf9" stroke-width="1.5"/>
+    <circle cx="8" cy="8" r="4" fill="#4caf50"/>
+    <circle cx="22" cy="8" r="7" fill="#fff" stroke="#90caf9" stroke-width="1.5"/>
+    <circle cx="22" cy="8" r="4" fill="#2196f3"/>
+    <circle cx="40" cy="8" r="7" fill="#fff" stroke="#90caf9" stroke-width="1.5"/>
+    <circle cx="40" cy="8" r="4" fill="#ff9800"/>
+    <circle cx="56" cy="8" r="7" fill="#fff" stroke="#90caf9" stroke-width="1.5"/>
+    <circle cx="56" cy="8" r="4" fill="#42a5f5"/>
+  </g>
+  <text x="16" y="52" font-family="system-ui, sans-serif" font-size="11" fill="#1565c0">This feature works across the latest devices and browser versions.</text>
+</svg>
