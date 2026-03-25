@@ -94,7 +94,10 @@
 
 				<!-- CSS: Styling & Layout -->
 				<section>
-					<section>
+					<section data-auto-animate>
+						<h2>CSS: Styling &amp; Layout</h2>
+					</section>
+					<section data-auto-animate>
 						<h2>CSS: Styling &amp; Layout</h2>
 						<ul>
 							<li><code>@scope</code></li>
@@ -188,7 +191,10 @@
 
 				<!-- CSS: Functions & Values -->
 				<section>
-					<section>
+					<section data-auto-animate>
+						<h2>CSS: Funksjoner &amp; Verdier</h2>
+					</section>
+					<section data-auto-animate>
 						<h2>CSS: Funksjoner &amp; Verdier</h2>
 						<ul>
 							<li><code>sign()</code></li>
@@ -248,7 +254,10 @@
 
 				<!-- View Transitions -->
 				<section>
-					<section>
+					<section data-auto-animate>
+						<h2>View Transitions</h2>
+					</section>
+					<section data-auto-animate>
 						<h2>View Transitions</h2>
 						<ul>
 							<li>View Transition API</li>
@@ -372,7 +381,10 @@
 
 				<!-- HTML Features -->
 				<section>
-					<section>
+					<section data-auto-animate>
+						<h2>HTML-funksjoner</h2>
+					</section>
+					<section data-auto-animate>
 						<h2>HTML-funksjoner</h2>
 						<ul>
 							<li>Popover API</li>
@@ -485,7 +497,10 @@
 
 				<!-- Performance & Metrics -->
 				<section>
-					<section>
+					<section data-auto-animate>
+						<h2>Ytelse &amp; Metrikker</h2>
+					</section>
+					<section data-auto-animate>
 						<h2>Ytelse &amp; Metrikker</h2>
 						<ul>
 							<li>Largest Contentful Paint (LCP)</li>
@@ -552,7 +567,10 @@
 
 				<!-- DOM & Interaction -->
 				<section>
-					<section>
+					<section data-auto-animate>
+						<h2>DOM &amp; Interaksjon</h2>
+					</section>
+					<section data-auto-animate>
 						<h2>DOM &amp; Interaksjon</h2>
 						<ul>
 							<li>Invoker Commands</li>
@@ -635,7 +653,10 @@ const ranges = sel.getComposedRanges(
 
 				<!-- Data & Parsing -->
 				<section>
-					<section>
+					<section data-auto-animate>
+						<h2>Data &amp; Parsing</h2>
+					</section>
+					<section data-auto-animate>
 						<h2>Data &amp; Parsing</h2>
 						<ul>
 							<li>JSON import attributes</li>
@@ -716,7 +737,10 @@ const b64 = bytes.toBase64(); // "SGVsbG8="</code></pre>
 
 				<!-- JavaScript Language -->
 				<section>
-					<section>
+					<section data-auto-animate>
+						<h2>JavaScript-språket</h2>
+					</section>
+					<section data-auto-animate>
 						<h2>JavaScript-språket</h2>
 						<ul>
 							<li>Iterator helpers</li>
@@ -830,7 +854,10 @@ result.value.then(() => {
 
 				<!-- More Web APIs -->
 				<section>
-					<section>
+					<section data-auto-animate>
+						<h2>Flere Web API-er</h2>
+					</section>
+					<section data-auto-animate>
 						<h2>Flere Web API-er</h2>
 						<ul>
 							<li><code>ClipboardItem.supports()</code></li>
@@ -893,11 +920,18 @@ fmt.format({ hours: 1, minutes: 30 });
 				</section>
 
 				<!-- Baseline 2026 -->
-				<section>
+				<section data-auto-animate>
+					<h2>Hva kommer? Baseline 2026</h2>
+					<p>Funksjoner som har blitt en del av Baseline så langt i 2026:</p>
+					<aside class="notes">
+						La oss se fremover — Baseline 2026 er allerede i gang.
+					</aside>
+				</section>
+				<section data-auto-animate>
 					<h2>Hva kommer? Baseline 2026</h2>
 					<p>Funksjoner som har blitt en del av Baseline så langt i 2026:</p>
 					<div style="display: flex; gap: 2em; justify-content: center; margin-top: 0.5em;">
-						<div>
+						<div data-id="css-col">
 							<h3>HTML &amp; CSS</h3>
 							<ul>
 								<li><code>rcap</code> unit</li>
@@ -906,7 +940,26 @@ fmt.format({ hours: 1, minutes: 30 });
 								<li><code>ric</code> unit</li>
 							</ul>
 						</div>
-						<div>
+					</div>
+					<aside class="notes">
+						På CSS-siden har vi fire nye rot-relative font-enheter: rcap, rch, rex og ric.
+						De ligner på rem, men for cap height, tegnbredde, x-høyde og ideografisk tegnbredde til rotelementet.
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<h2>Hva kommer? Baseline 2026</h2>
+					<p>Funksjoner som har blitt en del av Baseline så langt i 2026:</p>
+					<div style="display: flex; gap: 2em; justify-content: center; margin-top: 0.5em;">
+						<div data-id="css-col">
+							<h3>HTML &amp; CSS</h3>
+							<ul>
+								<li><code>rcap</code> unit</li>
+								<li><code>rch</code> unit</li>
+								<li><code>rex</code> unit</li>
+								<li><code>ric</code> unit</li>
+							</ul>
+						</div>
+						<div data-id="js-col">
 							<h3>JavaScript &amp; Web APIs</h3>
 							<ul>
 								<li>JS modules in service workers</li>
@@ -916,9 +969,8 @@ fmt.format({ hours: 1, minutes: 30 });
 					</div>
 					<p><small><a href="https://web.dev/baseline/2026">web.dev/baseline/2026</a></small></p>
 					<aside class="notes">
-						La oss se fremover — Baseline 2026 er allerede i gang.
-						På CSS-siden har vi fire nye rot-relative font-enheter: rcap, rch, rex og ric — ligner på rem, men for cap height, tegnbredde, x-høyde og ideografisk tegnbredde til rotelementet.
-						På JS-siden kan du nå bruke JavaScript-moduler (import/export) i service workers, og Navigation API gir en moderne erstatning for history.pushState med bedre livssyklushendelser.
+						På JS-siden kan du nå bruke JavaScript-moduler med import/export i service workers.
+						Og Navigation API gir en moderne erstatning for history.pushState med bedre livssyklushendelser.
 						Sjekk web.dev/baseline/2026 for å følge med når flere funksjoner lander.
 					</aside>
 				</section>
